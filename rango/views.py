@@ -1,4 +1,5 @@
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
@@ -27,7 +28,6 @@ def category(request, slug):
 
         context_dict['pages'] = pages
         context_dict['category'] = category
-        context_dict['slug'] = slug
     except Category.DoesNotExist:
         # Don't do anything - the template displays the "no category" message for us.
         pass
@@ -155,3 +155,14 @@ def user_login(request):
         # No context variables to pass to the template system, hence the
         # blank dictionary object...
         return render(request, 'rango/login.html', {})
+
+
+@login_required
+def restricted(request):
+    return render(request, 'rango/restricted.html', {})
+
+@login_required
+def user_logout(request):
+    logout(request)
+
+    return HttpResponseRedirect('/rango/')

@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title %}Restricted{% endblock %}
+
+{% block body_block %}
+    {% if user.is_authenticated %}
+        <h1>You can see this restricted page!</h1>
+    {% else %}
+    {% endif %}
+{% endblock %}
