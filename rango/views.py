@@ -7,13 +7,11 @@ from .forms import CategoryForm, PageForm, UserForm, UserProfileForm
 from .models import Category, Page
 
 def index(request):
-
     category_list = Category.objects.order_by('-likes')[:5]
     context_dict = {'categories': category_list}
     return render(request, 'rango/index.html', context_dict)
 
 def category(request, slug):
-
     context_dict = {}
     try:
         # Can we find a category name slug with the given name?
@@ -31,11 +29,9 @@ def category(request, slug):
     except Category.DoesNotExist:
         # Don't do anything - the template displays the "no category" message for us.
         pass
-
     return render(request, 'rango/category.html', context_dict)
 
 def add_category(request):
-
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
@@ -45,11 +41,9 @@ def add_category(request):
             print(form.errors)
     else:
         form = CategoryForm()
-
     return render(request, 'rango/add_category.html', {'form':form})
 
 def add_page(request, slug):
-
     try:
         cat = Category.objects.get(slug=slug)
     except Category.DoesNotExist:
@@ -74,7 +68,6 @@ def add_page(request, slug):
     return render(request, 'rango/add_page.html', context_dict)
 
 def register(request):
-
     # A boolean value for telling the template whether the registration was successful.
     # Set to False initially. Code changes value to True when registration succeeds.
     registered = False
@@ -119,7 +112,6 @@ def register(request):
             {'user_form': user_form, 'profile_form': profile_form, 'registered': registered} )
 
 def user_login(request):
-
     if request.method == 'POST':
         # Gather the username and password provided by the user.
         # This information is obtained from the login form.
@@ -164,5 +156,4 @@ def restricted(request):
 @login_required
 def user_logout(request):
     logout(request)
-
     return HttpResponseRedirect('/rango/')
