@@ -13,12 +13,15 @@ TEMPLATE_DIRS = (
 # See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'p#spfq_&%z38^$(^-3%9j7sq&=dbg5*h2nz5p6&clf$-4!-b&*'
+SECRET_KEY = os.environ.get('SECRET_KEY', 'p#spfq_&%z38^$(^-3%9j7sq&=dbg5*h2nz5p6&clf$-4!-b&*')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['llei.pythonanywhere.com']
+ALLOWED_HOSTS = [
+    '127.0.0.1', 
+    'llei.pythonanywhere.com'
+    ]
 
 
 # Application definition
