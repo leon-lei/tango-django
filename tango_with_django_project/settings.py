@@ -18,7 +18,7 @@ SECRET_KEY = 'p#spfq_&%z38^$(^-3%9j7sq&=dbg5*h2nz5p6&clf$-4!-b&*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['llei.pythonanywhere.com']
 
 
 # Application definition
